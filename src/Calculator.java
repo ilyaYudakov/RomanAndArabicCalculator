@@ -4,11 +4,17 @@ import java.util.Scanner;
 
 public class Calculator {
 
-    public void getString(){
+    private String firstValue;
+    private String secondValue;
+    private String operation;
+
+    public void inputData() {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Введите выражение [2+2] или два римских числа от I до X:[V+V]: ");
-        String line = sc.nextLine();
+        String[] values = sc.nextLine().toUpperCase().split(" ");
+        firstValue = values[0];
+        operation = values[1];
+        secondValue = values[2];
     }
 
     public void calculate(int a, char b, int c){
@@ -58,5 +64,16 @@ public class Calculator {
             }
         }
         return result;
+    }
+    public String getFirstValue() {
+        return firstValue;
+    }
+
+    public String getSecondValue() {
+        return secondValue;
+    }
+
+    public String getOperation() {
+        return operation;
     }
 }
