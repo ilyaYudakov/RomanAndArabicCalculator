@@ -12,6 +12,11 @@ public class Calculator {
     public void inputData() {
 
         Scanner sc = new Scanner(System.in);
+        System.out.print(
+                """
+                        Введите выражение арабскими (от 0 до 10) или
+                        римскими (от I до X)  цифрами и нажмите Enter:
+                        """);
         String[] values = sc.nextLine().toUpperCase().split(" ");
         firstValue = values[0];
         operation = values[1];
@@ -40,7 +45,7 @@ public class Calculator {
             if (value <= 0) {
                 throw new RuntimeException("Roman numerals can't be zero or negative");
             }
-            return  intToRoman(value);
+            return intToRoman(value);
         }
         return String.valueOf(value);
     }
@@ -49,11 +54,11 @@ public class Calculator {
         return (value.contains("I") || value.contains("V") || value.contains("X"));
     }
 
-    public void calculate(String firstValue, String secondValue, String operation) {
+    public String calculate(String firstValue, String secondValue, String operation) {
 
-        Integer[] converterValues = stringToInteger(firstValue, secondValue);
-        Integer num1 = converterValues[0];
-        Integer num2 = converterValues[1];
+        Integer[] convertedValues = stringToInteger(firstValue, secondValue);
+        Integer num1 = convertedValues[0];
+        Integer num2 = convertedValues[1];
         if (num1 > 10 || num2 > 10) {
             throw new RuntimeException("You can't perform operations with numbers greater than 10");
         }
@@ -70,7 +75,8 @@ public class Calculator {
                 default:
                     throw new RuntimeException("Unsupported operation");
             }
-        } catch (ArithmeticException e) {
+        }
+        catch (ArithmeticException ex) {
             throw new ArithmeticException("Can't be divided by zero");
         }
     }
